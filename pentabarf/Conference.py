@@ -28,17 +28,20 @@ class Conference:
         SubElement(schedule, 'conference')
         index = 1
         for day in self.day_objects:
-            day_element = SubElement(schedule, 'day')
-            day_element.set('date', day_element.date.strftime('%Y-%m-%d'))
-            day_element.set('index', index)
+            day_element = SubElement(schedule, 'day', {
+                'date': day.date.strftime('%Y-%m-%d'),
+                'index': index
+            })
             index += 1
             for room in day.room_objects:
-                room_element = SubElement(day_element, 'room')
-                room_element.set('name', room.name)
+                room_element = SubElement(day_element, 'room', {
+                    'name': room.name
+                })
 
                 for event in room_element.event_objects:
-                    event_element = SubElement(room_element, 'event')
-                    event_element.set('id', event.id)
+                    event_element = SubElement(room_element, 'event', {
+                        'id': event.id
+                    })
                     date_element = SubElement(event_element, 'date')
                     date_element.text = event.date.isoformat()
                     start_element = SubElement(event_element, 'start')
@@ -66,8 +69,9 @@ class Conference:
                     persons_element = SubElement(event_element, 'persons')
 
                     for person in event.person_objects:
-                        person_element = SubElement(persons_element, 'person')
-                        room_element.set('id', person.id)
+                        person_element = SubElement(persons_element, 'person', {
+                            'id': person.id
+                        })
                         person_element.text = person.name
 
         if comment:
