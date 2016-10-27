@@ -30,7 +30,7 @@ class Conference:
         for day in self.day_objects:
             day_element = SubElement(schedule, 'day', {
                 'date': day.date.strftime('%Y-%m-%d'),
-                'index': index
+                'index': str(index)
             })
             index += 1
             for room in day.room_objects:
@@ -40,7 +40,7 @@ class Conference:
 
                 for event in room.event_objects:
                     event_element = SubElement(room_element, 'event', {
-                        'id': event.id
+                        'id': str(event.id)
                     })
                     date_element = SubElement(event_element, 'date')
                     date_element.text = event.date.isoformat()
@@ -70,7 +70,7 @@ class Conference:
 
                     for person in event.person_objects:
                         person_element = SubElement(persons_element, 'person', {
-                            'id': person.id
+                            'id': str(person.id)
                         })
                         person_element.text = person.name
 
