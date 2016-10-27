@@ -38,7 +38,7 @@ class Conference:
                     'name': room.name
                 })
 
-                for event in room_element.event_objects:
+                for event in room.event_objects:
                     event_element = SubElement(room_element, 'event', {
                         'id': event.id
                     })
