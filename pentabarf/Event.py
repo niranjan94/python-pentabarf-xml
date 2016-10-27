@@ -30,6 +30,7 @@ class Event:
         self.conf_url = conf_url
         self.full_conf_url = full_conf_url
         self.released = released
+        self.person_objects = []
 
     def add_person(self, person):
         self.person_objects.append(person)

@@ -19,13 +19,27 @@ class Conference:
         self.days = days
         self.day_change = day_change
         self.timeslot_duration = timeslot_duration
+        self.day_objects = []
 
     def add_day(self, day):
         self.day_objects.append(day)
 
     def generate(self, comment=None):
         schedule = Element('schedule')
-        SubElement(schedule, 'conference')
+        conference = SubElement(schedule, 'conference')
+        title_element = SubElement(conference, 'title')
+        title_element.text = self.title
+        start_element = SubElement(conference, 'start')
+        start_element.text = self.start.strftime('%Y-%m-%d')
+        end_element = SubElement(conference, 'end')
+        end_element.text = self.end.strftime('%Y-%m-%d')
+        days_element = SubElement(conference, 'days')
+        days_element.text = str(self.days)
+        day_change_element = SubElement(conference, 'day_change')
+        day_change_element.text = self.day_change
+        timeslot_duration_element = SubElement(conference, 'timeslot_duration')
+        timeslot_duration_element.text = self.timeslot_duration
+
         index = 1
         for day in self.day_objects:
             day_element = SubElement(schedule, 'day', {
@@ -48,8 +62,8 @@ class Conference:
                     start_element.text = event.start
                     duration_element = SubElement(event_element, 'duration')
                     duration_element.text = event.duration
-                    room_element = SubElement(event_element, 'duration')
-                    room_element.text = room.name
+                    event_room_element = SubElement(event_element, 'duration')
+                    event_room_element.text = room.name
                     track_element = SubElement(event_element, 'track')
                     track_element.text = event.track
                     abstract_element = SubElement(event_element, 'abstract')
