@@ -10,9 +10,12 @@ from pentabarf.Person import Person
 from pentabarf.Room import Room
 
 
-def get_text(element, name):
-    return (element.find(name) or SubElement(element, name)).text
-
+def get_text(sub_element, name):
+    sub_element = sub_element.find(name)
+    if sub_element is not None:
+        return sub_element.text
+    else:
+        return None
 
 class PentabarfParser:
     def __init__(self):
@@ -20,8 +23,7 @@ class PentabarfParser:
 
     @staticmethod
     def parse(string):
-        tree = ET.fromstring(string)
-        root = tree.getroot()
+        root = ET.fromstring(string)
 
         conference_element = root.find('conference')
 
@@ -64,7 +66,7 @@ class PentabarfParser:
                     for person_element in persons_element.findall('person'):
                         person = Person(
                             id=int(person_element.get('id')),
-                            name=person_element.text
+                            name=person_element.text,
                         )
                         event.add_person(person)
 

@@ -4,7 +4,7 @@ setup.py
 pentabarf/Conference.py
 pentabarf/Day.py
 pentabarf/Event.py
-pentabarf/Parser.py
+pentabarf/PentabarfParser.py
 pentabarf/Person.py
 pentabarf/Room.py
 pentabarf/__init__.py
