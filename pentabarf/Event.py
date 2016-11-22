@@ -13,10 +13,14 @@ class Event:
     conf_url = None
     full_conf_url = None
     released = None
+    video_url = None
+    slides_url = None
+    audio_url = None
 
     person_objects = []
 
-    def __init__(self, id=None, date=None, start=None, duration=None, track=None, abstract=None,
+    def __init__(self, id=None, date=None, start=None, duration=None, track=None, abstract=None, video_url=None,
+                 slides_url=None, audio_url=None,
                  title=None, type=None, description=None, conf_url=None, full_conf_url=None, released=None):
         self.id = id
         self.date = date
@@ -30,6 +34,9 @@ class Event:
         self.conf_url = conf_url
         self.full_conf_url = full_conf_url
         self.released = released
+        self.video_url = video_url
+        self.slides_url = slides_url
+        self.audio_url = audio_url
         self.person_objects = []
 
     def add_person(self, person):

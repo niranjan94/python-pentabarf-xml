@@ -9,16 +9,29 @@ class Conference:
     days = None
     day_change = None
     timeslot_duration = None
+    venue = None
+    city = None
 
     day_objects = []
 
-    def __init__(self, title=None, start=None, end=None, days=None, day_change=None, timeslot_duration=None):
+    def __init__(self,
+                 title=None,
+                 start=None,
+                 end=None,
+                 days=None,
+                 day_change=None,
+                 city=None,
+                 timeslot_duration=None,
+                 venue=None):
+
         self.title = title
         self.start = start
         self.end = end
         self.days = days
         self.day_change = day_change
         self.timeslot_duration = timeslot_duration
+        self.venue = venue
+        self.city = city
         self.day_objects = []
 
     def add_day(self, day):
@@ -33,12 +46,16 @@ class Conference:
         start_element.text = self.start.strftime('%Y-%m-%d')
         end_element = SubElement(conference, 'end')
         end_element.text = self.end.strftime('%Y-%m-%d')
+        venue_element = SubElement(conference, 'venue')
+        venue_element.text = self.venue
         days_element = SubElement(conference, 'days')
         days_element.text = str(self.days)
         day_change_element = SubElement(conference, 'day_change')
         day_change_element.text = self.day_change
         timeslot_duration_element = SubElement(conference, 'timeslot_duration')
         timeslot_duration_element.text = self.timeslot_duration
+        city_element = SubElement(conference, 'city')
+        city_element.text = self.city
 
         index = 1
         for day in self.day_objects:
