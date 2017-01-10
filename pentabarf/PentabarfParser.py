@@ -1,5 +1,3 @@
-from xml.etree.ElementTree import SubElement
-
 import defusedxml.ElementTree as ET
 from pentabarf.Conference import Conference
 from datetime import datetime
@@ -16,6 +14,7 @@ def get_text(sub_element, name):
         return sub_element.text
     else:
         return None
+
 
 class PentabarfParser:
     def __init__(self):
@@ -71,17 +70,18 @@ class PentabarfParser:
                         event.add_person(person)
 
                     links_element = event_element.find('links')
-                    for link_element in links_element.findall('link'):
-                        link_url = link_element.get('href')
-                        if not event.video_url and ('mp4' in link_url
-                                                    or 'webm' in link_url
-                                                    or 'youtube' in link_url
-                                                    or 'avi' in link_url):
-                            event.video_url = link_url
-                        if not event.audio_url and ('mp3' in link_url or 'wav' in link_url or 'soundcloud' in link_url):
-                            event.audio_url = link_url
-                        if not event.slides_url and ('ppt' in link_url or 'pptx' in link_url or 'slide' in link_url):
-                            event.slides_url = link_url
+                    if links_element:
+                        for link_element in links_element.findall('link'):
+                            link_url = link_element.get('href')
+                            if not event.video_url and ('mp4' in link_url
+                                                        or 'webm' in link_url
+                                                        or 'youtube' in link_url
+                                                        or 'avi' in link_url):
+                                event.video_url = link_url
+                            if not event.audio_url and ('mp3' in link_url or 'wav' in link_url or 'soundcloud' in link_url):
+                                event.audio_url = link_url
+                            if not event.slides_url and ('ppt' in link_url or 'pptx' in link_url or 'slide' in link_url):
+                                event.slides_url = link_url
 
                     room.add_event(event)
                 day.add_room(room)
