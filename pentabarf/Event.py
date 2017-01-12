@@ -7,6 +7,7 @@ class Event:
     duration = None
     track = None
     abstract = None
+    level = None
     title = None
     type = None
     description = None
@@ -20,7 +21,7 @@ class Event:
     person_objects = []
 
     def __init__(self, id=None, date=None, start=None, duration=None, track=None, abstract=None, video_url=None,
-                 slides_url=None, audio_url=None,
+                 slides_url=None, audio_url=None, level=None,
                  title=None, type=None, description=None, conf_url=None, full_conf_url=None, released=None):
         self.id = id
         self.date = date
@@ -28,6 +29,7 @@ class Event:
         self.duration = duration
         self.track = track
         self.abstract = abstract
+        self.level = level
         self.title = title
         self.type = type
         self.description = description
@@ -41,4 +43,3 @@ class Event:
 
     def add_person(self, person):
         self.person_objects.append(person)
-
