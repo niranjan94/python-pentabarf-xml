@@ -59,6 +59,7 @@ class PentabarfParser:
                         description=get_text(event_element, 'description'),
                         conf_url=get_text(event_element, 'conf_url'),
                         full_conf_url=get_text(event_element, 'conf_url'),
+                        level=get_text(event_element, 'level')
                     )
 
                     persons_element = event_element.find('persons')
