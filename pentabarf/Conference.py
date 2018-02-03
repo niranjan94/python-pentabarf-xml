@@ -79,7 +79,7 @@ class Conference:
                     start_element.text = event.start
                     duration_element = SubElement(event_element, 'duration')
                     duration_element.text = event.duration
-                    event_room_element = SubElement(event_element, 'duration')
+                    event_room_element = SubElement(event_element, 'room')
                     event_room_element.text = room.name
                     track_element = SubElement(event_element, 'track')
                     track_element.text = event.track
