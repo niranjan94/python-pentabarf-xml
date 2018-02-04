@@ -1,4 +1,4 @@
-from xml.etree.ElementTree import Element, SubElement, Comment, tostring
+from lxml.etree import Element, SubElement, Comment, tostring
 
 
 class Conference:
@@ -37,7 +37,7 @@ class Conference:
     def add_day(self, day):
         self.day_objects.append(day)
 
-    def generate(self, comment=None):
+    def generate(self, comment=None, pretty_print=True):
         schedule = Element('schedule')
         conference = SubElement(schedule, 'conference')
         title_element = SubElement(conference, 'title')
@@ -108,4 +108,4 @@ class Conference:
         if comment:
             comment = Comment(comment)
             schedule.append(comment)
-        return tostring(schedule)
+        return tostring(schedule, pretty_print=pretty_print)
