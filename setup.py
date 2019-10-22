@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='python-pentabarf-xml',
     packages=['pentabarf'],
-    version='0.19',
+    version='0.20',
     description='Generate pentabarf XML schedule for events/conferences',
     author='Niranjan Rajendran',
     author_email='niranjan94@yahoo.com',
